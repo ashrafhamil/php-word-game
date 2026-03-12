@@ -44,3 +44,5 @@ PROMPTS LOG
 21. commit the changes
 
 22. do we need to commit the @candidate/composer.lock ?
+
+23. push
