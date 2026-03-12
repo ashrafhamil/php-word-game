@@ -112,6 +112,23 @@ class WordGuessingGame implements MultiplayerGuessingGame
         return true;
     }
 
+    /**
+     * Exclude VocabularyCheckerImpl (and its large word list) from session serialization.
+     * Only game state that changes between requests needs to be stored.
+     */
+    public function __sleep(): array
+    {
+        return ['words', 'masked', 'wordLength'];
+    }
+
+    /**
+     * Recreate the vocabulary checker after the session restores the game state.
+     */
+    public function __wakeup(): void
+    {
+        $this->vocabularyChecker = new VocabularyCheckerImpl();
+    }
+
     private function revealMatchingChars(string $submission): int
     {
         $revealed = 0;

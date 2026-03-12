@@ -14,7 +14,8 @@
     "files": [
       "MultiplayerGuessingGame.php",
       "VocabularyCheckerImpl.php",
-      "WordGuessingGame.php"
+      "WordGuessingGame.php",
+      "GuessValidator.php"
     ]
   },
   "autoload-dev": {

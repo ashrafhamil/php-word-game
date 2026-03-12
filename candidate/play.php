@@ -11,7 +11,9 @@ $pool       = array_values(array_filter($allWords, fn(string $w) => strlen($w) =
 $keys       = array_rand($pool, 3);
 $words      = [$pool[$keys[0]], $pool[$keys[1]], $pool[$keys[2]]];
 
-$game = new WordGuessingGame($words, new VocabularyCheckerImpl());
+$vocab     = new VocabularyCheckerImpl();
+$game      = new WordGuessingGame($words, $vocab);
+$validator = new GuessValidator($vocab, $wordLength);
 
 echo "Welcome to the Word Guessing Game!\n";
 echo "Words to guess: " . count($words) . " words, {$wordLength} letters each.\n\n";
@@ -25,20 +27,26 @@ while (true) {
         echo "  Word " . ($i + 1) . ": $masked\n";
     }
 
-    $guess = readline("\nYour guess (or 'quit' to exit): ");
+    $guess = strtolower(trim(readline("\nYour guess (or 'quit' to exit): ")));
 
-    if (trim($guess) === 'quit') {
+    if ($guess === 'quit') {
         echo "Thanks for playing, $playerName!\n";
         break;
     }
 
-    $score = $game->submitGuess($playerName, trim($guess));
+    $error = $validator->validate($guess);
+    if ($error !== null) {
+        echo "Invalid: {$error}.\n";
+        continue;
+    }
+
+    $score = $game->submitGuess($playerName, $guess);
 
     if ($score === 0) {
-        echo "Invalid guess — no points scored.\n";
+        echo "Invalid: \"{$guess}\" doesn't match any revealed character positions.\n";
     } elseif ($score === 10) {
-        echo "Exact match! +10 points\n";
+        echo "Exact match! +10 points.\n";
     } else {
-        echo "Nice! $score character(s) revealed. +$score points\n";
+        echo "{$score} character(s) revealed! +{$score} points.\n";
     }
 }

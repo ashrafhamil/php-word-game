@@ -46,3 +46,31 @@ PROMPTS LOG
 22. do we need to commit the @candidate/composer.lock ?
 
 23. push
+
+24. instead on cli. can we play it on web?
+
+25. everytime i guess, the word change on web
+
+26. the issue happened after i click new game
+
+27. why i get invalid guess? although it is 5 word
+
+28. instead of saying invalid guess. make it precise
+
+29. undo the commit
+
+30. do we need to gitignore .phpunit.result.cache?
+
+31. remove emoji
+
+32. lets have GuessValidator
+
+33. lets not think that this porject is small. we need to make sure it able to scale. plus, DRY and single responsibility is industry standard.
+
+34. let say we are going to scale. what do u say
+
+35. yes
+
+36. this seems to much. what is the most industry standard way
+
+37. ok do it
