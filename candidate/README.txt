@@ -74,3 +74,11 @@ PROMPTS LOG
 36. this seems to much. what is the most industry standard way
 
 37. ok do it
+
+38. can it be play on 2 browser?
+
+39. is there any other way?
+
+40. push current changes first
+
+41. enable 2 player

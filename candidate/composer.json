@@ -15,6 +15,7 @@
       "MultiplayerGuessingGame.php",
       "VocabularyCheckerImpl.php",
       "WordGuessingGame.php",
+      "GameStore.php",
       "GuessValidator.php"
     ]
   },
