@@ -1,0 +1,148 @@
+Click the button below to download starting files and begin your Challenge.
+For this challenge you CANNOT edit the following files which are provided to you.
+
+wordlist.txt
+You can add files to your submission, but if you edit any of the provided files, other than those specified, your changes will be IGNORED.
+
+Please read these instructions carefully before starting to code:
+
+When you assemble your code challenge solution for submission please create it as a ZIP file.
+Please do NOT include generated files in your submitted solution.
+Your ZIP upload will be cleaned to remove ignored (e.g. generated) files.
+Files will be removed and ignored based on standard gitignore files as specified in this GitHub project: github/gitignore.
+When you upload your code, you will be shown which files are accepted for code review and which will be ignored.
+The ignored files will NOT be provided to the reviewer.
+Create your solution WITHIN the structure of the starting ZIP file that you have downloaded.
+When you are ready to upload your code, you can re-ZIP from the starting top-level directory and upload the entire ZIP by clicking the UPLOAD SOLUTION button below.
+
+This challenge comprises two parts:
+Creating code to run part of the backend of a multiplayer word guessing game.
+Completing a short review of some code that is provided to you to help you fulfil one of the requirements for the game. The expectation is that this part, adding some comments to the code supplied, should take no more than 10-15 minutes.
+1. Create part of the backend for a multiplayer word guessing game.
+Overview
+Players will see a list of partially revealed words such as:
+
+c***u**r    
+**ftw**e    
+e****eer     
+A player submits a single word at a time as a guess for the incomplete words.
+If the guess is valid but not an exact match, hidden characters may be revealed, and the player scores points.
+A game has a single list of partially revealed words.
+A game can have multiple players.
+All players view the same list of partially revealed game words and submit guesses to reveal characters in this list of words.
+Your solution should accommodate the fact that multiple players can submit as many guesses as they like at any time. There is NO turn rotation for the game players for example.
+Detailed Game Specification
+1. The game is formed of multiple words all of which have the same length.
+
+The players can only see some of the characters in the words.
+Other characters are masked or hidden.
+“Hidden” characters are represented to the players by an asterisk *.
+Hence, the player can see the number of missing characters in the target word.
+2. A game is initialised with a group of words.
+
+All the words in a game should have the same length.
+Once initialised, the order of the words in the game should be maintained and not change.
+The getGameStrings() method (which always returns the current state of the list of partially revealed words, see below) should always return the words in this order.
+You can assume that there are no duplicates in the group of words forming a game.
+In its starting state, the game should reveal only one character of each of the words.
+The position of the revealed character when the game is initialised should be randomised.
+3. A player makes a play by submitting a guess (which must be single word)
+
+The submitted guess must be “valid” against at least one of the words in the game.
+To be valid the submission must have matching characters in all the revealed positions for at least one partially revealed word that forms the game e.g. if a partially revealed word is p**g*a**** then programmer is a valid player submission but protracted is not (there is a mismatch at the 4th character g <> t).
+A submission should NOT be validated against a fully revealed word i.e. submitting the same fully revealed word again is NOT a valid submission.
+The submission should also be a valid English word not just a random String.
+A class that loads a flat-file word list of valid English words is provided to you to use in your game implementation (VocabularyCheckerImpl).
+4. When a player submits a word, hidden characters that are matched are replaced by their actual underlying values.
+
+A match occurs in a word when the character value and position are the same.
+If the partially revealed word is *oft**** and the underlying word is softness then a player submission of software would result in the first * being replaced with the underlying s to give soft****.
+Matching hidden characters should be revealed in all the words comprising the game even if the submitted word is NOT a valid guess (see section 3 above) for that particular word in the game e.g. if *o*tn*** is another of the partially revealed words in the game, with footnote as the underlying word, then even though software is not a valid submission for this particular partially revealed word (mismatch at the 5th character w <> n) the result of the submission is to reveal the final e resulting in: *o*tn**e.
+The total number of characters newly revealed across all words in the game is the player’s score for the submission, unless the submission is an exact match for one of the game words (see below).
+The expectation is that in a future version of the game player scores might be cumulative and ranked on a leaderboard but the creation and further handling of player scores such as management of a leaderboard is completely out of scope for this challenge and can be ignored.
+5. If a player submits an exact match for one of the words in the game, the submission scores 10 points irrespective of the number of hidden characters revealed in the matched word.
+
+IMPORTANT In the case of an exact match NO hidden characters in other words in the game should be revealed.
+Words that contain no remaining hidden characters (fully revealed words) should remain in the game list and be displayed to players.
+As noted in section 3, a submission should NOT be validated against a fully revealed word.
+Special handling of the game or a submission made to the game after all words are fully revealed can also be considered out of scope for this challenge. Any submission made after all words are fully revealed will be invalid based on the point above.
+Example guesses
+
+Consider a game comprised of three 5-letter words
+
+poker
+cover
+pesto
+game state	submission	result	score	comment
+1	***e*
+c****
+****o
+boxer	*o*er
+co*er
+****o
+5	5 matching hidden characters revealed even though boxer is a valid guess only against the first word in the list.
+2	*o*er
+co*er
+****o
+poker	poker
+co*er
+****o
+10	Exact word match scores 10 points. Note the p of pesto is NOT revealed. An exact word match does NOT reveal letters in any other words.
+3	***e*
+c****
+****o
+bunch	***e*
+c****
+****o
+0	Invalid guess. No matches against the visible letters in any of the words.
+4	***e*
+c****
+****o
+dinner	***e*
+c****
+****o
+0	Invalid guess. Six letter word submitted.
+5	***e*
+c****
+****o
+lotto	*o*e*
+co***
+***to
+3	One letter revealed in each word in the list.
+Instructions
+
+You are provided with an interface MultiplayerGuessingGame containing two methods
+interface MultiplayerGuessingGame {
+    function getGameStrings(): array;
+
+    function submitGuess(string $playerName, string $submission);
+}
+Create an implementation of this interface to create a game that meets the specification above.
+Please use PHP version >= 8.1 to complete your code.
+Output is not important, so you can develop either for a web server with PHP, or for the PHP command-line interpreter.
+Ideally your solution would not utilise any third party libraries apart from those used for running tests (see below).
+Please include in your submission any tests that you write whilst building out your solution.
+In the composer.json file we have provided autoload already, feel free to use a testing library for writing your unit or integration tests.
+Your code should be production quality.
+2. Review the code provided to you in the VocabularyCheckerImpl class.
+Please do not rewrite the code.
+Just add line comments to the file where you think the code could be improved along with your reasoning.
+Please note
+
+This challenge is to assess your problem-solving and programming skills, not AIs.
+
+Please complete the task on your own. For this assessment, it’s fine to consult documentation or use AI tools to refresh your memory for a specific syntax or library call, but please do not copy code directly from AI. It should be used to brainstorm ideas, not generate code to review. If you do use AI, please add a README containing:
+
+Why you used AI - Describe the specific hurdle (e.g., “reminding myself of the correct syntax for an inline ternary/conditional expression”).
+
+Your prompts / queries - Copy the questions you asked the AI.
+
+AI-influenced output - Quote or point to the code the AI produced.
+
+Your understanding - Explain how the code works and what changes you made after receiving and reviewing it.
+
+Submissions that appear to contain copy / paste AI output without these notes will be failed.
+
+Overuse of AI will result in a failed submission.
+
+Submissions that contain features or functionality that were not in scope will be marked down.

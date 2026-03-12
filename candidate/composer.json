@@ -1,0 +1,12 @@
+{
+  "name": "geektastic/phpmpwgg",
+  "description": "A game where multiple players submit words and get points for scoring the correct letters or words",
+  "require": {
+    "php": ">=8.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "": ""
+    }
+  }
+}
