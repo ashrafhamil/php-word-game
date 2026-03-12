@@ -18,3 +18,27 @@ PROMPTS LOG
 8. how user able to play it? two terminal?
 
 9. what would it take if i want to play the game on cli or browser? and which one is the simplest
+
+10. what else do we need to prepare for this project or everything covered?
+
+11. do we need the PHPUnit?
+
+12. plan the implementation of this project. no need to count lines and size of wordlist
+
+13. "In the composer.json file we have provided autoload already, feel free to use a testing library for writing your unit or integration tests." maybe we can discard that bootstrap.php
+
+14. how to run the test
+
+15. add in README.txt the prompt that i wrote
+
+16. add in @candidate/CLAUDE.md that every prompt wrote must be wrote in @candidate/README.txt
+
+17. how to run the test
+
+18. how to play the game
+
+19. why we use that 3 word? take any 3 from wordlist.txt
+
+20. why i got invalid guess for poster?
+
+21. commit the changes

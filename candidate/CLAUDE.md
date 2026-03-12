@@ -1,5 +1,9 @@
 # CLAUDE.md
 
+## Prompt Logging
+
+Every prompt written by the user must be appended to `candidate/README.txt` in order, under the PROMPTS LOG section.
+
 ## Source of Truth
 
 The challenge requirements are the source of truth for all implementation decisions.
