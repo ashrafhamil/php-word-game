@@ -42,3 +42,5 @@ PROMPTS LOG
 20. why i got invalid guess for poster?
 
 21. commit the changes
+
+22. do we need to commit the @candidate/composer.lock ?
